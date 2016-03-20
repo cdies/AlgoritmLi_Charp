@@ -89,10 +89,12 @@ namespace AlgoritmLi
             //traceOut(); //посмотреть распространение волны
 
             //волновйо алгоритм поиска пути начиная от начала
+            bool flag = true;
             wave.Clear();
             wave.Add(new Point(x, y));
             while (map[y, x] != 0)
             {
+                flag = true;
                 for (int d = 0; d < 4; d++)
                 {
                     nx = x + dx[d];
@@ -102,8 +104,14 @@ namespace AlgoritmLi
                         x = nx;
                         y = ny;
                         wave.Add(new Point(x, y));
+                        flag = false;
                         break;
                     }
+                }
+                if (flag)
+                {
+                    Console.WriteLine("Пути нет!");
+                    break;
                 }
             }
 
